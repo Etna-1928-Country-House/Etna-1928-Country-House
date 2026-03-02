@@ -476,6 +476,8 @@
       position: relative;
       padding: 20px 10px 60px;
       overflow: hidden;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     
     .reviews-swiper .swiper-slide {
@@ -483,11 +485,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0 20px;
     }
     
     .review-image-wrapper {
       width: 100%;
-      max-width: 600px;
+      max-width: 900px;
       margin: 0 auto;
       border-radius: 16px;
       overflow: hidden;
@@ -495,7 +498,7 @@
       transition: all 0.4s ease;
       cursor: pointer;
       background: white;
-      padding: 10px;
+      padding: 15px;
     }
     
     .review-image-wrapper:hover {
@@ -612,6 +615,8 @@
       .reviews-section h2 { font-size: 1.9rem; }
       .reviews-subtitle { font-size: 1rem; }
       .review-lightbox-close { top: 15px; right: 20px; font-size: 2.5rem; }
+      .review-image-wrapper { max-width: 100%; padding: 10px; }
+      .reviews-swiper .swiper-slide { padding: 0 10px; }
     }
     
     @media (max-width: 480px) { 
@@ -625,6 +630,8 @@
       .review-lightbox-close { top: 10px; right: 15px; font-size: 2rem; width: 40px; height: 40px; }
       .reviews-swiper .swiper-button-prev,
       .reviews-swiper .swiper-button-next { width: 40px; height: 40px; }
+      .review-image-wrapper { padding: 8px; }
+      .reviews-swiper .swiper-slide { padding: 0 5px; }
     }
   </style>
 </head>
@@ -649,7 +656,7 @@
 
   <!-- Sezione Recensioni -->
   <section class="reviews-section">
-    <h2>Le nostre recensioni da Booking.com</h2>
+    <h2>Le nostre recensioni!</h2>
     <p class="reviews-subtitle">⭐ Scopri cosa dicono i nostri ospiti</p>
     
     <div class="swiper reviews-swiper">
@@ -788,36 +795,24 @@
       autoplay: { delay: 4000, disableOnInteraction: false }
     });
     
-    // Swiper per le recensioni
+    // Swiper per le recensioni - una alla volta per massima leggibilità
     const reviewsSwiper = new Swiper(".reviews-swiper", {
       slidesPerView: 1,
-      spaceBetween: 30,
+      spaceBetween: 40,
       loop: true,
+      centeredSlides: true,
       navigation: { 
         nextEl: ".reviews-swiper .swiper-button-next", 
         prevEl: ".reviews-swiper .swiper-button-prev" 
       },
       pagination: { 
         el: ".reviews-swiper .swiper-pagination", 
-        clickable: true 
+        clickable: true,
+        dynamicBullets: true
       },
       autoplay: { 
-        delay: 5000, 
+        delay: 6000, 
         disableOnInteraction: false 
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 1,
-          spaceBetween: 30
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30
-        }
       }
     });
     
