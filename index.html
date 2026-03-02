@@ -20,67 +20,152 @@
   <meta name="description" content="Etna 1928 Country House: camere confortevoli in Sicilia. Prenota ora!" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body{ 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      line-height:1.6; 
-      padding:30px 20px; 
-      max-width:900px; 
-      margin:auto; 
-      background: #fafafa;
+      line-height: 1.6; 
+      padding: 0; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
+      min-height: 100vh;
     }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      min-height: 100vh;
+      box-shadow: 0 0 50px rgba(0,0,0,0.2);
+    }
+    
     header { 
-      margin-bottom:30px; 
+      margin-bottom: 50px; 
       text-align: center; 
-      color: #2e2e2e;
+      animation: fadeInDown 1s ease;
+      position: relative;
+      padding: 30px 0;
     }
+    
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+    
     header h1 {
       font-weight: 700;
-      font-size: 2.8rem;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
+      font-size: 3.2rem;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
       font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
+    
     header p {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-style: italic;
       color: #555;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .swiper {
       position: relative;
-      margin-bottom: 40px;
-      border-radius: 16px;
+      margin-bottom: 50px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      box-shadow: 0 15px 50px rgba(102, 126, 234, 0.4);
       height: 700px;
       cursor: pointer;
-      background: #ddd;
-      transition: box-shadow 0.3s ease;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.4s ease;
+      animation: fadeInUp 1s ease 0.3s both;
     }
+    
     .swiper:hover {
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.6);
+      transform: translateY(-5px);
     }
+    
     .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: 20px;
+      transition: transform 0.5s ease;
+    }
+    
+    .swiper-slide:hover img {
+      transform: scale(1.05);
     }
 
     .swiper-button-prev, .swiper-button-next {
-      color: #2e2e2e;
-      background: rgba(255,255,255,0.7);
-      width: 48px;
-      height: 48px;
+      color: #fff;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      transform: scale(1.1);
+    }
+    
+    .swiper-pagination-bullet {
+      background: #fff;
+      opacity: 0.7;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background: #667eea;
+      opacity: 1;
     }
 
     .overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -96,61 +181,206 @@
     .overlay img {
       max-width: 90%;
       max-height: 90%;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(255,255,255,0.6);
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
     }
 
     .rooms-title {
       font-weight: 700;
-      font-size: 1.8rem;
-      margin: 50px 0 20px;
-      color: #2e2e2e;
+      font-size: 2.2rem;
+      margin: 60px 0 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       font-family: 'Georgia', serif;
       text-align: center;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      animation: fadeInUp 1s ease 0.5s both;
     }
 
     .contacts {
-      margin-top: 20px;
-      padding: 30px;
-      border-radius: 16px;
-      background: #fefefe;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      margin-top: 60px;
+      padding: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+      animation: fadeInUp 1s ease 0.7s both;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .contacts::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
     .contacts h2 {
       text-align: center;
       font-weight: 700;
-      color: #2e2e2e;
-      font-size: 1.8rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
     }
-    .contacts p {
-      margin: 12px 0;
+    
+    .contact-info {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .contact-notice {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 15px;
       text-align: center;
-      font-size: 1.15rem;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      animation: pulse 2s ease-in-out infinite;
     }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+    
+    .contact-item svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-btn svg {
+      width: 32px;
+      height: 32px;
+    }
+    
     .contacts a {
-      color: #b35c00;
+      color: #667eea;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .contacts a:hover {
+      color: #764ba2;
+    }
+    
+    .booking-link {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white !important;
+      padding: 15px 35px;
+      border-radius: 50px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .booking-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+      color: white !important;
     }
 
     footer { 
-      margin-top:50px; 
-      font-size:1rem; 
-      color:#666; 
-      text-align:center; 
+      margin-top: 60px; 
+      padding-top: 30px;
+      font-size: 1rem; 
+      color: #666; 
+      text-align: center;
+      border-top: 2px solid rgba(102, 126, 234, 0.2);
     }
 
-    @media (max-width: 768px) { .swiper { height: 400px; } }
-    @media (max-width: 480px) { .swiper { height: 300px; } }
+    @media (max-width: 768px) { 
+      .swiper { height: 450px; }
+      header h1 { font-size: 2.5rem; }
+      .contacts { padding: 30px 20px; }
+      .contact-item { font-size: 1.1rem; }
+    }
+    
+    @media (max-width: 480px) { 
+      .swiper { height: 350px; }
+      header h1 { font-size: 2rem; letter-spacing: 2px; }
+      header p { font-size: 1.1rem; }
+      .whatsapp-btn { padding: 15px 30px; font-size: 1.1rem; }
+      .contact-notice { padding: 15px 20px; font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Etna 1928 Country House</h1>
-    <p>Camere e spazi accoglienti ai piedi dell'Etna</p>
-  </header>
-<div class="rooms-title">Visita la struttura</div>
+  <div class="container">
+    <header>
+      <h1>Etna 1928 Country House</h1>
+      <p>Camere e spazi accoglienti ai piedi dell'Etna</p>
+    </header>
+    
+    <div class="rooms-title">Visita la struttura</div>
   <div class="swiper" id="hero">
     <div class="swiper-wrapper">
       <div class="swiper-slide"><img src="img/principali/principale.jpg" alt="Vista esterna 1" /></div>
@@ -166,14 +396,47 @@
 
   <section class="contacts">
     <h2>Contatti</h2>
-    <!--<p>Email: <a href="mailto:info@etna1928.it">info@etna1928.it</a></p>--!>
-    <p>Telefono: <a href="tel:+39333 739 7919">+39 333 739 7919</a></p>
-    <p>Guarda le recensioni su <a href="https://www.booking.com/hotel/it/satellite-dell-39-etna.it.html#tab-reviews" target="_blank">Booking.com</a></p>
+    
+    <div class="contact-notice">
+      📅 Ti preghiamo di contattarci preventivamente per verificare la disponibilità
+    </div>
+    
+    <div class="contact-info">
+      <a href="https://wa.me/393337397919?text=Ciao!%20Vorrei%20informazioni%20sulla%20disponibilit%C3%A0%20delle%20camere%20per%20le%20mie%20date.%20Grazie!" 
+         class="whatsapp-btn" 
+         target="_blank"
+         rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Contattaci su WhatsApp
+      </a>
+      
+      <div class="contact-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>Telefono: <a href="tel:+393337397919">+39 333 739 7919</a></span>
+      </div>
+      
+      <div class="contact-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span>Guarda le <a href="https://www.booking.com/hotel/it/satellite-dell-39-etna.it.html#tab-reviews" class="booking-link" target="_blank" rel="noopener noreferrer">recensioni su Booking.com</a></span>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>© Etna 1928 Country House</p>
+    <p>© 2026 Etna 1928 Country House — Tutti i diritti riservati</p>
   </footer>
+  
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
