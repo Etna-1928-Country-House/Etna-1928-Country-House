@@ -395,7 +395,7 @@
       align-items: center;
       gap: 12px;
       background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-      color: white;
+      color: #054d29;
       padding: 18px 40px;
       border-radius: 50px;
       text-decoration: none;
@@ -445,6 +445,155 @@
       box-shadow: 0 12px 35px rgba(123, 160, 91, 0.6);
       color: white !important;
     }
+    
+    /* Sezione Recensioni */
+    .reviews-section {
+      margin: 60px 0;
+      padding: 0;
+    }
+    
+    .reviews-section h2 {
+      text-align: center;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7BA05B 0%, #8B6F47 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      font-family: 'Georgia', serif;
+    }
+    
+    .reviews-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 1.15rem;
+      font-style: italic;
+    }
+    
+    .reviews-swiper {
+      position: relative;
+      padding: 20px 10px 60px;
+      overflow: hidden;
+    }
+    
+    .reviews-swiper .swiper-slide {
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .review-image-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(123, 160, 91, 0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      background: white;
+      padding: 10px;
+    }
+    
+    .review-image-wrapper:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(123, 160, 91, 0.5);
+    }
+    
+    .review-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+    
+    .reviews-swiper .swiper-button-prev,
+    .reviews-swiper .swiper-button-next {
+      color: #fff;
+      background: linear-gradient(135deg, #7BA05B, #8B6F47);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(123, 160, 91, 0.4);
+    }
+    
+    .reviews-swiper .swiper-button-prev:hover,
+    .reviews-swiper .swiper-button-next:hover {
+      background: linear-gradient(135deg, #8B6F47, #7BA05B);
+      transform: scale(1.1);
+    }
+    
+    .reviews-swiper .swiper-pagination {
+      bottom: 20px;
+    }
+    
+    .reviews-swiper .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: #7BA05B;
+      opacity: 0.3;
+      transition: all 0.3s ease;
+    }
+    
+    .reviews-swiper .swiper-pagination-bullet-active {
+      opacity: 1;
+      width: 35px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #7BA05B, #8B6F47);
+    }
+    
+    /* Lightbox per recensioni */
+    .review-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+    
+    .review-lightbox.active {
+      display: flex;
+    }
+    
+    .review-lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      border-radius: 12px;
+      box-shadow: 0 0 50px rgba(123, 160, 91, 0.6);
+    }
+    
+    .review-lightbox-close {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      z-index: 10001;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(123, 160, 91, 0.8);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .review-lightbox-close:hover {
+      background: rgba(123, 160, 91, 1);
+      transform: rotate(90deg);
+    }
 
     footer { 
       margin-top: 60px; 
@@ -460,6 +609,9 @@
       header h1 { font-size: 2.5rem; }
       .contacts { padding: 30px 20px; }
       .contact-item { font-size: 1.1rem; }
+      .reviews-section h2 { font-size: 1.9rem; }
+      .reviews-subtitle { font-size: 1rem; }
+      .review-lightbox-close { top: 15px; right: 20px; font-size: 2.5rem; }
     }
     
     @media (max-width: 480px) { 
@@ -468,6 +620,11 @@
       header p { font-size: 1.1rem; }
       .whatsapp-btn { padding: 15px 30px; font-size: 1.1rem; }
       .contact-notice { padding: 15px 20px; font-size: 1rem; }
+      .reviews-section h2 { font-size: 1.6rem; }
+      .reviews-subtitle { font-size: 0.95rem; }
+      .review-lightbox-close { top: 10px; right: 15px; font-size: 2rem; width: 40px; height: 40px; }
+      .reviews-swiper .swiper-button-prev,
+      .reviews-swiper .swiper-button-next { width: 40px; height: 40px; }
     }
   </style>
 </head>
@@ -488,6 +645,91 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Sezione Recensioni -->
+  <section class="reviews-section">
+    <h2>Le nostre recensioni da Booking.com</h2>
+    <p class="reviews-subtitle">⭐ Scopri cosa dicono i nostri ospiti</p>
+    
+    <div class="swiper reviews-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_1.png')">
+            <img src="recensioni/Screenshot_1.png" alt="Recensione cliente Booking.com 1" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_2.png')">
+            <img src="recensioni/Screenshot_2.png" alt="Recensione cliente Booking.com 2" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_3.png')">
+            <img src="recensioni/Screenshot_3.png" alt="Recensione cliente Booking.com 3" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_4.png')">
+            <img src="recensioni/Screenshot_4.png" alt="Recensione cliente Booking.com 4" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_5.png')">
+            <img src="recensioni/Screenshot_5.png" alt="Recensione cliente Booking.com 5" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_6.png')">
+            <img src="recensioni/Screenshot_6.png" alt="Recensione cliente Booking.com 6" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_7.png')">
+            <img src="recensioni/Screenshot_7.png" alt="Recensione cliente Booking.com 7" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_8.png')">
+            <img src="recensioni/Screenshot_8.png" alt="Recensione cliente Booking.com 8" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_9.png')">
+            <img src="recensioni/Screenshot_9.png" alt="Recensione cliente Booking.com 9" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_10.png')">
+            <img src="recensioni/Screenshot_10.png" alt="Recensione cliente Booking.com 10" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_11.png')">
+            <img src="recensioni/Screenshot_11.png" alt="Recensione cliente Booking.com 11" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_12.png')">
+            <img src="recensioni/Screenshot_12.png" alt="Recensione cliente Booking.com 12" loading="lazy" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="review-image-wrapper" onclick="openReviewLightbox('recensioni/Screenshot_13.png')">
+            <img src="recensioni/Screenshot_13.png" alt="Recensione cliente Booking.com 13" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox per recensioni -->
+  <div class="review-lightbox" id="reviewLightbox" onclick="closeReviewLightbox()">
+    <span class="review-lightbox-close">&times;</span>
+    <img id="reviewLightboxImg" src="" alt="Recensione ingrandita" />
   </div>
 
   
@@ -538,12 +780,69 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
+    // Swiper principale per le immagini della struttura
     const swiper = new Swiper("#hero", {
       loop: true,
       navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
       pagination: { el: ".swiper-pagination", clickable: true },
       autoplay: { delay: 4000, disableOnInteraction: false }
     });
+    
+    // Swiper per le recensioni
+    const reviewsSwiper = new Swiper(".reviews-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      navigation: { 
+        nextEl: ".reviews-swiper .swiper-button-next", 
+        prevEl: ".reviews-swiper .swiper-button-prev" 
+      },
+      pagination: { 
+        el: ".reviews-swiper .swiper-pagination", 
+        clickable: true 
+      },
+      autoplay: { 
+        delay: 5000, 
+        disableOnInteraction: false 
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 30
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        }
+      }
+    });
+    
+    // Funzioni per il lightbox delle recensioni
+    function openReviewLightbox(imageSrc) {
+      const lightbox = document.getElementById('reviewLightbox');
+      const lightboxImg = document.getElementById('reviewLightboxImg');
+      lightboxImg.src = imageSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeReviewLightbox() {
+      const lightbox = document.getElementById('reviewLightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Chiudi lightbox con tasto ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeReviewLightbox();
+      }
+    });
   </script>
 </body>
 </html>
+
